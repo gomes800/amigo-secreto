@@ -6,22 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "person")
+@Table(name = "names")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class Names {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-
-    @OneToOne
-    @JoinColumn(name = "chosen_name_id")
-    private Names chosenName;
-
     private Integer footwearNumber;
+    private Boolean taken = false;
 
 }
