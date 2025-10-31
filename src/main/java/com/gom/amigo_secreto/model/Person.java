@@ -24,4 +24,8 @@ public class Person {
 
     private Integer footwearNumber;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Type type;
+
 }
