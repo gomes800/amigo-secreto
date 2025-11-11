@@ -2,6 +2,7 @@ package com.gom.amigo_secreto.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "groups")
+@Builder
 public class Group {
 
     @Id
@@ -39,7 +41,7 @@ public class Group {
     private String description;
     private LocalDateTime eventDate;
     private BigDecimal priceLimit;
-    private boolean DrawCompleted;
+    private boolean drawCompleted;
     private String rules;
 
 }

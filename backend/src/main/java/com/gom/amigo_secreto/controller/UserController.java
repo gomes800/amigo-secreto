@@ -1,6 +1,6 @@
 package com.gom.amigo_secreto.controller;
 
-import com.gom.amigo_secreto.model.dto.UserResponseDTO;
+import com.gom.amigo_secreto.dto.user.UserResponseDTO;
 import com.gom.amigo_secreto.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
