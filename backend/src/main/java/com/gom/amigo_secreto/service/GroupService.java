@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -34,6 +35,7 @@ public class GroupService {
         return GroupResponseDTO.fromEntity(group);
     }
 
+    @Transactional
     public GroupResponseDTO create(CreateGroupDTO dto) {
         Group group = Group.builder()
                 .name(dto.name())
@@ -50,6 +52,7 @@ public class GroupService {
         return GroupResponseDTO.fromEntity(group);
     }
 
+    @Transactional
     public GroupResponseDTO update(Long id, UpdateGroupDTO dto) {
         Group group = groupRepository.findByIdOrThrow(id);
 
@@ -59,6 +62,7 @@ public class GroupService {
         return GroupResponseDTO.fromEntity(group);
     }
 
+    @Transactional
     public void delete(Long id) {
         Group group = groupRepository.findByIdOrThrow(id);
 
