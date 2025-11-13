@@ -1,37 +1,34 @@
 package com.gom.amigo_secreto.dto.group;
 
+import com.gom.amigo_secreto.dto.user.UserSummaryDTO;
 import com.gom.amigo_secreto.model.Group;
-import com.gom.amigo_secreto.model.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
-public record GroupResponseDTO(
+public record GroupWithParticipantsDTO(
         Long groupId,
         String name,
-        Integer size,
-        LocalDateTime createDate,
-        User groupAdmin,
         String description,
         LocalDateTime eventDate,
         BigDecimal priceLimit,
         boolean drawCompleted,
-        String rules,
-        int participants
+        UserSummaryDTO admin,
+        List<UserSummaryDTO> participants  // Lista completa aqui
 ) {
-    public static GroupResponseDTO fromEntity(Group group) {
-        return new GroupResponseDTO(
+    public static GroupWithParticipantsDTO fromEntity(Group group) {
+        return new GroupWithParticipantsDTO(
                 group.getGroupId(),
                 group.getName(),
-                group.getSize(),
-                group.getCreateDate(),
-                group.getGroupAdmin(),
                 group.getDescription(),
                 group.getEventDate(),
                 group.getPriceLimit(),
                 group.isDrawCompleted(),
-                group.getRules(),
-                group.getParticipants() != null ? group.getParticipants().size() : 0
+                UserSummaryDTO.fromEntity(group.getGroupAdmin()),
+                group.getParticipants().stream()
+                        .map(UserSummaryDTO::fromEntity)
+                        .toList()
         );
     }
 }
