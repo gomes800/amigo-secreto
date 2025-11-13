@@ -2,6 +2,7 @@ package com.gom.amigo_secreto.service;
 
 import com.gom.amigo_secreto.dto.group.CreateGroupDTO;
 import com.gom.amigo_secreto.dto.group.GroupResponseDTO;
+import com.gom.amigo_secreto.dto.group.GroupWithParticipantsDTO;
 import com.gom.amigo_secreto.dto.group.UpdateGroupDTO;
 import com.gom.amigo_secreto.exception.draw.DrawAlreadyCompletedException;
 import com.gom.amigo_secreto.exception.group.UserAlreadyInGroupException;
@@ -94,5 +95,11 @@ public class GroupService {
         group.getParticipants().add(user);
 
         groupRepository.save(group);
+    }
+
+    public GroupWithParticipantsDTO getWithParticipants(Long id) {
+        Group group = groupRepository.findByIdOrThrow(id);
+
+        return GroupWithParticipantsDTO.fromEntity(group);
     }
 }

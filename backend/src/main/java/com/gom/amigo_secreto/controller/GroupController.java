@@ -2,6 +2,7 @@ package com.gom.amigo_secreto.controller;
 
 import com.gom.amigo_secreto.dto.group.CreateGroupDTO;
 import com.gom.amigo_secreto.dto.group.GroupResponseDTO;
+import com.gom.amigo_secreto.dto.group.GroupWithParticipantsDTO;
 import com.gom.amigo_secreto.dto.group.UpdateGroupDTO;
 import com.gom.amigo_secreto.service.GroupService;
 import org.springframework.data.domain.Page;
@@ -47,6 +48,11 @@ public class GroupController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/{id}/participants")
+    public ResponseEntity<GroupWithParticipantsDTO> getWithParticipants(@PathVariable Long id) {
+        return ResponseEntity.ok(groupService.getWithParticipants(id));
+    }
+
     @PostMapping("/{groupId}/add-user/{userId}")
     public ResponseEntity<Void> addUser(
             @PathVariable Long groupId,
@@ -54,7 +60,7 @@ public class GroupController {
 
         groupService.addUser(groupId, userId);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
