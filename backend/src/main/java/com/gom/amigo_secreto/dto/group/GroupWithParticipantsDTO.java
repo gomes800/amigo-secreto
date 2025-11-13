@@ -14,8 +14,7 @@ public record GroupWithParticipantsDTO(
         LocalDateTime eventDate,
         BigDecimal priceLimit,
         boolean drawCompleted,
-        UserSummaryDTO admin,
-        List<UserSummaryDTO> participants  // Lista completa aqui
+        List<UserSummaryDTO> participants
 ) {
     public static GroupWithParticipantsDTO fromEntity(Group group) {
         return new GroupWithParticipantsDTO(
@@ -25,7 +24,6 @@ public record GroupWithParticipantsDTO(
                 group.getEventDate(),
                 group.getPriceLimit(),
                 group.isDrawCompleted(),
-                UserSummaryDTO.fromEntity(group.getGroupAdmin()),
                 group.getParticipants().stream()
                         .map(UserSummaryDTO::fromEntity)
                         .toList()

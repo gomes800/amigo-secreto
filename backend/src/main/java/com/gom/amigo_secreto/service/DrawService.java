@@ -44,7 +44,7 @@ public class DrawService {
 
 
     @Transactional
-    public List<Draw> createDraw(Long groupId) {
+    public List<DrawResponseDTO> createDraw(Long groupId) {
         Group group = groupRepository.findByIdOrThrow(groupId);
 
         if (group.isDrawCompleted()) {
@@ -64,7 +64,9 @@ public class DrawService {
         group.setDrawCompleted(true);
         groupRepository.save(group);
 
-        return draws;
+        return draws.stream()
+                .map(DrawResponseDTO::fromEntity)
+                .toList();
 
     }
 
