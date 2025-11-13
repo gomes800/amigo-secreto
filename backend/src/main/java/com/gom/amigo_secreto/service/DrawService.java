@@ -1,8 +1,8 @@
 package com.gom.amigo_secreto.service;
 
 import com.gom.amigo_secreto.dto.draw.DrawResponseDTO;
-import com.gom.amigo_secreto.exception.DrawAlreadyCompletedException;
-import com.gom.amigo_secreto.exception.InsufficientParticipantsException;
+import com.gom.amigo_secreto.exception.draw.DrawAlreadyCompletedException;
+import com.gom.amigo_secreto.exception.draw.InsufficientParticipantsException;
 import com.gom.amigo_secreto.model.Draw;
 import com.gom.amigo_secreto.model.Group;
 import com.gom.amigo_secreto.model.User;

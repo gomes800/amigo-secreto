@@ -1,4 +1,4 @@
-package com.gom.amigo_secreto.exception;
+package com.gom.amigo_secreto.exception.draw;
 
 public class DrawAlreadyCompletedException extends RuntimeException {
     public DrawAlreadyCompletedException() {

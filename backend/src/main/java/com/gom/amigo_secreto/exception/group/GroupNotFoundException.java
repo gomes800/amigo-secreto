@@ -1,4 +1,4 @@
-package com.gom.amigo_secreto.exception;
+package com.gom.amigo_secreto.exception.group;
 
 public class GroupNotFoundException extends RuntimeException{
     public GroupNotFoundException(Long id) {

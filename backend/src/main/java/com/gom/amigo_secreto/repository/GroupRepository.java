@@ -1,6 +1,6 @@
 package com.gom.amigo_secreto.repository;
 
-import com.gom.amigo_secreto.exception.GroupNotFoundException;
+import com.gom.amigo_secreto.exception.group.GroupNotFoundException;
 import com.gom.amigo_secreto.model.Group;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
