@@ -47,5 +47,15 @@ public class GroupController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/{groupId}/add-user/{userId}")
+    public ResponseEntity<Void> addUser(
+            @PathVariable Long groupId,
+            @PathVariable Long userId) {
+
+        groupService.addUser(groupId, userId);
+
+        return ResponseEntity.ok().build();
+    }
+
 
 }
