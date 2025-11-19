@@ -23,7 +23,10 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String provider;
+
+    @Column(nullable = false)
     private String providerId;
 
     @Column(unique = true)
@@ -38,7 +41,9 @@ public class User {
     @ManyToMany(mappedBy = "participants")
     private List<Group> groups;
 
+    @Column(nullable = false)
     private LocalDateTime registerDate;
+
     private String wishList;
     private String preferences;
 }
