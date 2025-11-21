@@ -19,6 +19,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String provider;
+
+    @Column(nullable = false)
+    private String providerId;
+
+    @Column(unique = true)
+    private String username;
+
+    private String avatarUrl;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
@@ -27,7 +41,9 @@ public class User {
     @ManyToMany(mappedBy = "participants")
     private List<Group> groups;
 
+    @Column(nullable = false)
     private LocalDateTime registerDate;
+
     private String wishList;
     private String preferences;
 }

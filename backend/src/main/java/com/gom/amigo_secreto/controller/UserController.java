@@ -1,9 +1,13 @@
 package com.gom.amigo_secreto.controller;
 
+import com.gom.amigo_secreto.dto.user.UserProfileUpdateDTO;
 import com.gom.amigo_secreto.dto.user.UserResponseDTO;
 import com.gom.amigo_secreto.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,4 +26,12 @@ public class UserController {
             @RequestParam(defaultValue = "5") int size) {
         return ResponseEntity.ok(userService.getAll(page, size));
     }
+
+    @PutMapping("/profile")
+    public ResponseEntity<UserResponseDTO> updateProfile(
+            @AuthenticationPrincipal OAuth2User oAuth2User,
+            @Valid @RequestBody UserProfileUpdateDTO dto) {
+        return ResponseEntity.ok(userService.updateProfile(oAuth2User.getAttribute("email"), dto));
+    }
+
 }
