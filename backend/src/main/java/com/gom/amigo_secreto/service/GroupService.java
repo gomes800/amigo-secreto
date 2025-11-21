@@ -6,6 +6,7 @@ import com.gom.amigo_secreto.dto.group.GroupWithParticipantsDTO;
 import com.gom.amigo_secreto.dto.group.UpdateGroupDTO;
 import com.gom.amigo_secreto.exception.draw.DrawAlreadyCompletedException;
 import com.gom.amigo_secreto.exception.group.UserAlreadyInGroupException;
+import com.gom.amigo_secreto.exception.user.UserNotFoundException;
 import com.gom.amigo_secreto.model.Group;
 import com.gom.amigo_secreto.model.User;
 import com.gom.amigo_secreto.repository.GroupRepository;
@@ -43,10 +44,14 @@ public class GroupService {
     }
 
     @Transactional
-    public GroupResponseDTO create(CreateGroupDTO dto) {
+    public GroupResponseDTO create(String email, CreateGroupDTO dto) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(email));
+
         Group group = Group.builder()
                 .name(dto.name())
                 .description(dto.description())
+                .groupAdmin(user)
                 .eventDate(dto.eventDate())
                 .priceLimit(dto.priceLimit())
                 .rules(dto.rules())

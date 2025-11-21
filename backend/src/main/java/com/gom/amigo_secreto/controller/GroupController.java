@@ -8,6 +8,8 @@ import com.gom.amigo_secreto.service.GroupService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -33,8 +35,10 @@ public class GroupController {
     }
 
     @PostMapping
-    public ResponseEntity<GroupResponseDTO> create(@RequestBody CreateGroupDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(groupService.create(dto));
+    public ResponseEntity<GroupResponseDTO> create(
+            @AuthenticationPrincipal OAuth2User oAuth2User,
+            @RequestBody CreateGroupDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(groupService.create(oAuth2User.getAttribute("email"),dto));
     }
 
     @PatchMapping("/{id}")

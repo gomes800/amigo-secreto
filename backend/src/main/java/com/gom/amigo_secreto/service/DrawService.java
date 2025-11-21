@@ -93,4 +93,11 @@ public class DrawService {
 
         return draws;
     }
+
+    @Transactional
+    public void delete(Long id) {
+        Draw draw = drawRepository.findByIdOrThrow(id);
+
+        drawRepository.delete(draw);
+    }
 }

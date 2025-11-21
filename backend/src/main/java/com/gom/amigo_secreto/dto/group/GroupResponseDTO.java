@@ -1,7 +1,7 @@
 package com.gom.amigo_secreto.dto.group;
 
+import com.gom.amigo_secreto.dto.user.UserSummaryDTO;
 import com.gom.amigo_secreto.model.Group;
-import com.gom.amigo_secreto.model.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ public record GroupResponseDTO(
         String name,
         Integer size,
         LocalDateTime createDate,
-        User groupAdmin,
+        UserSummaryDTO groupAdmin,
         String description,
         LocalDateTime eventDate,
         BigDecimal priceLimit,
@@ -25,7 +25,7 @@ public record GroupResponseDTO(
                 group.getName(),
                 group.getSize(),
                 group.getCreateDate(),
-                group.getGroupAdmin(),
+                group.getGroupAdmin() != null ? UserSummaryDTO.fromEntity(group.getGroupAdmin()) : null,
                 group.getDescription(),
                 group.getEventDate(),
                 group.getPriceLimit(),

@@ -30,4 +30,10 @@ public class DrawController {
     public ResponseEntity<List<DrawResponseDTO>> createDraw(@PathVariable Long groupId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(drawService.createDraw(groupId));
     }
+
+    @DeleteMapping("/{drawId}")
+    public ResponseEntity<Void> deleteDraw(@PathVariable Long drawId) {
+        drawService.delete(drawId);
+        return ResponseEntity.noContent().build();
+    }
 }
