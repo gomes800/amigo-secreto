@@ -27,6 +27,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getAll(page, size));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getById(id));
+    }
+
     @PutMapping("/profile")
     public ResponseEntity<UserResponseDTO> updateProfile(
             @AuthenticationPrincipal OAuth2User oAuth2User,

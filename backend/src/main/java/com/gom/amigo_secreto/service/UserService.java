@@ -27,6 +27,11 @@ public class UserService {
                 .map(UserResponseDTO::fromEntity);
     }
 
+    public UserResponseDTO getById(Long id) {
+        User user = userRepository.findByIdOrThrow(id);
+        return UserResponseDTO.fromEntity(user);
+    }
+
     @Transactional
     public UserResponseDTO updateProfile(String email, UserProfileUpdateDTO dto) {
         User user = userRepository.findByEmail(email)
