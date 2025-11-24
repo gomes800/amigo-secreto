@@ -27,6 +27,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getAll(page, size));
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<UserResponseDTO> getMyProfile(@AuthenticationPrincipal OAuth2User oAuth2User) {
+        return ResponseEntity.ok(userService.getMyProfile(oAuth2User.getAttribute("email")));
+    }
+
     @PutMapping("/profile")
     public ResponseEntity<UserResponseDTO> updateProfile(
             @AuthenticationPrincipal OAuth2User oAuth2User,

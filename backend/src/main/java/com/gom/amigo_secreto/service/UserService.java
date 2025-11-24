@@ -20,6 +20,13 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public UserResponseDTO getMyProfile(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(email));
+
+        return UserResponseDTO.fromEntity(user);
+    }
+
     public Page<UserResponseDTO> getAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
 
