@@ -7,6 +7,10 @@ import java.time.LocalDate;
 
 public record UserResponseDTO(
         Long userId,
+        String email,
+        String username,
+        String provider,
+        String avatarUrl,
         String firstName,
         String lastName,
         LocalDate birthDate,
@@ -17,6 +21,10 @@ public record UserResponseDTO(
     public static UserResponseDTO fromEntity(User user) {
         return new UserResponseDTO(
                 user.getUserId(),
+                user.getEmail(),
+                user.getUsername(),
+                user.getProvider(),
+                user.getAvatarUrl(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getBirthDate(),
